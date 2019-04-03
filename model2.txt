@@ -1,0 +1,44 @@
+https://github.com/Nikkhil16/Inverted_Pendulum/blob/master/inverted_pendulum.py
+
+# naming
+cart mass = M
+cart position = pos
+cart speed = spd
+cart acceleration = acc
+cart friction coefficient = b
+
+pole mass moment = I
+pole mass = m
+pole angle = ang (compared to the pole upright position, counter clockwise)
+pole angle speed = asp
+pole angle acceleration = angacc
+pole length = L
+pole mass center = L/2 = l
+
+# theta_double_dot = (((cart.mass + pendulum.ball_mass) * g * sin(pendulum.theta)) +
+#                      (F * cos(pendulum.theta)) -
+#                      (pendulum.ball_mass * ((theta_dot)**2.0) * pendulum.length * sin(pendulum.theta) * cos(pendulum.theta))) /
+#                    (pendulum.length * (cart.mass + (pendulum.ball_mass * (math.sin(pendulum.theta)**2.0))))
+angacc = (((M + m) * g * sinang) + (F * cosang) - (m * (asp^2) * l * sinang * cosang)) / (l * (M + (m * sinang^2)))
+
+# x_double_dot = ((pendulum.ball_mass * g * math.sin(pendulum.theta) * math.cos(pendulum.theta)) -
+#                 (pendulum.ball_mass * pendulum.length * math.sin(pendulum.theta) * (theta_dot**2)) + (F)) /
+#                (cart.mass + (pendulum.ball_mass * (math.sin(pendulum.theta)**2)))
+acc = ((m * g * sinang * cosang) - (m * l * sinang * asp^2) + F) / (M + (m * sinang^2))
+pos += ((dt^2) * acc) + ((spd * dt))
+ang += ((td^2)*angacc) + (((asp)*dt))
+
+#speed required to set the pole to upright position
+vf = sqrt(2gL) = ang*d_t * r
+asp_req = sqrt(2*g*L)/l
+
+# ang_mod equation
+F_y_pole = m * g * sinang
+F_const_spd = b * spd
+sinang = b * spd / m / g
+ang =asin( b *spd /m / g)
+
+
+F_y_pole = m * g * sinang
+sinang = f_ext / m / g
+ang = asin(f_ext / m / g)

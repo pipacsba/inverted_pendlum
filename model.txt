@@ -1,0 +1,46 @@
+
+# naming
+cart mass = M
+cart position = pos
+cart speed = spd
+cart acceleration = acc
+cart friction coefficient = b
+
+pole mass moment = I
+pole mass = m
+pole angle = ang (compared to the pole upright position, counter clockwise)
+pole angle speed = asp
+pole angle acceleration = angacc
+pole length = L
+pole mass center = L/2 = l
+
+external force = F
+
+# CART SUM FORCE
+M * acc = F - N - b * spd
+
+# POLE SUM MOMENT
+I * ang_acc = N * l* cos(ang) + P *l * sin(ang)
+
+# x equation of pole
+m * acc_x_p = N
+N = m * acc_x_p
+
+# y equation of pole
+m * acc_y_p = P - m * g
+P = m * (acc_y_p + g)
+
+pos_x_p = cart_pos - l * sin(ang)
+spd_x_p = spd - l * asp * cos(ang)
+acc_x_p = acc + l * asp^2 * sin(ang) - l * ang_acc * cos(ang)
+N = m * acc_x_p = m * (acc + l * asp^2 * sin(ang) - l * ang_acc * cos(ang))
+
+pos_y_p =  l * cos(ang)
+spd_y_p = - l * asp  * sin(ang)
+acc_y_p = - l * asp^2 * cos(ang) - l * ang_acc * sin(ang)
+P = m * (acc_y_p + g) = m * (- l * asp^2 * cos(ang) - l * ang_acc * sin(ang) + g)
+
+acc =1 / M * (F - N - b * spd)
+ang_acc = 1 / I * (N * l* cos(ang) + P *l * sin(ang))
+
+
